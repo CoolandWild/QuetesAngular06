@@ -1,0 +1,54 @@
+<form (ngSubmit)="onSubmit()" #myForm="ngForm" class="mailPass">
+  <!-- <div>
+    Form submitted ? {{myForm.submitted}}
+    Form valid ? {{myForm.valid}}
+    Form invalid ? {{myForm.valid}}
+  </div> -->
+  <div class="firstName">
+    <label for="firsstName">Enter your fistname</label>
+    <input type="test" [(ngModel)]="model.firstName" name="firstName" required minlength="3" maxlength="15" required firstName #firstNameRef="ngModel"/>
+  </div>
+  <div class="lastName">
+    <label for="lastName">Enter your lastname</label>
+    <input type="test" [(ngModel)]="model.lastName" name="lastName" required minlength="3" maxlength="15" required lastName #lastNameRef="ngModel"/>
+  </div>
+<div class="mail" >
+    <label for="email">Enter your email</label>
+    <input type="email" [(ngModel)]="model.email" name="email" required minlength="3" maxlength="255" required email #emailRef="ngModel"/>
+</div>
+<div class="password">
+  <div>
+  <label for="password">password</label>
+  <input type="passWord" [(ngModel)]="model.passWord" name="passWord" required minlength="6"  #passWordRef="ngModel">
+  </div>
+</div>
+<button>Valider</button>
+<button type="reset">Restaurer</button>
+<div *ngIf="firstNameRef.errors && firstNameRef.errors.minlength && myForm.submitted">
+  firstname must contains at least 3 characters
+</div>
+<div *ngIf="firstNameRef.errors && firstNameRef.errors.maxlength && myForm.submitted">
+  firstname must contains maximum 15 characters
+</div>
+<div *ngIf="lastNameRef.errors && firstNameRef.errors.maxlength && myForm.submitted">
+  lastname must contains maximum 15 characters
+</div>
+<div *ngIf="lastNameRef.errors && lastNameRef.errors.minlength && myForm.submitted">
+  lastname must contains at least 3 characters
+</div>
+<div *ngIf="emailRef.errors && emailRef.errors.minlength && myForm.submitted">
+  Email must contains at least 3 characters
+</div>
+<div *ngIf="emailRef.errors && emailRef.errors.maxlength && myForm.submitted">
+   Email is too long (255 chars maximum)
+</div>
+ <div *ngIf="emailRef.errors && myForm.submitted">
+    <span *ngIf="emailRef.errors.required">Email required</span>
+    <span *ngIf="emailRef.errors.email">Email type must be valid</span>
+  </div>
+   <div *ngIf="passWordRef.errors && myForm.submitted">
+    <span *ngIf="passWordRef.errors.required"> UserPassword required</span>
+    <span *ngIf="passWordRef.errors.minlength"> Password must contains at least 6 characters</span>
+  </div>
+<div *ngIf="myForm.valid && myForm.submitted">Login Validated</div>
+</form>
